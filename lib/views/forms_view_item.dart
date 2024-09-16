@@ -134,7 +134,7 @@ class _MyFormState extends State<MyForm> {
             controller: _fullNameController,
             decoration: const InputDecoration(
               icon: Icon(Icons.person),
-              labelText: 'Full Name',
+              labelText: 'Nombre completo',
             ),
             textInputAction: TextInputAction.next,
           ),
@@ -143,13 +143,13 @@ class _MyFormState extends State<MyForm> {
             controller: _emailController,
             decoration: const InputDecoration(
               icon: Icon(Icons.email),
-              labelText: 'Email',
-              helperText: 'A valid email e.g. joe.doe@gmail.com',
+              labelText: 'Correo',
+              helperText: 'Ingrese un correo valido ejemplo: joe.doe@gmail.com',
             ),
             validator: (value) {
               final emailValidationError = _state.email.validator(value ?? '');
               if (emailValidationError != null) {
-                return 'Invalid email address';
+                return 'Correo invalido';
               }
               return null;
             },
@@ -161,7 +161,7 @@ class _MyFormState extends State<MyForm> {
             controller: _phoneController,
             decoration: const InputDecoration(
               icon: Icon(Icons.phone),
-              labelText: 'Phone',
+              labelText: 'Teléfono',
             ),
             validator: (value) =>
                 value?.isEmpty ?? true ? 'Please enter a phone number' : null,
@@ -175,7 +175,7 @@ class _MyFormState extends State<MyForm> {
             ElevatedButton(
               key: const Key('myForm_submit'),
               onPressed: _onSubmit,
-              child: const Text('Submit'),
+              child: const Text('Guardar'),
             ),
         ],
       ),

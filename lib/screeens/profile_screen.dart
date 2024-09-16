@@ -41,8 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           // UserSocialProfile en el fondo
           UserSocialProfile(
             fullName: _fullName,
-            picture:
-                '', // Puedes dejar esto vacío si la imagen ya está en el contenedor circular
+            picture: '',
             icons: [
               icon(Platform.github),
             ],
@@ -62,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         fit: BoxFit.cover,
                       )
                     : Image.network(
-                        'https://avatars.githubusercontent.com/u/60258980?s=400&u=49d305bd19e5cf0eaf101986bfa075c3a7a3931c&v=4',
+                        'https://avatars.githubusercontent.com/u/89615727?v=4',
                         fit: BoxFit.cover,
                       ),
               ),
