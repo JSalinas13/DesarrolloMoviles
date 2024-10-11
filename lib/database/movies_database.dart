@@ -1,13 +1,15 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:main_app/models/moviesdao.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class MoviesDatabase {
-  static final NAMEDB = 'MOVIESDB';
-  static final VERSIONDB = 1;
+  static const NAMEDB = 'MOVIESDB';
+  static const VERSIONDB = 1;
   static Database? _database;
 
   Future<Database> get database async {
@@ -22,25 +24,26 @@ class MoviesDatabase {
     return openDatabase(
       path,
       version: VERSIONDB,
-      onCreate: (db, version) {
-        String query = '''
-          CREATE TABLE tblGenre(
-            idGenre char(1) primary key,
-            dscGenre varchar(50)
-          );
-          
-          CREATE TABLE tblMovies(
-            idMovie INTEGER PRIMARY KEY,
-            nameMovie VARCHAR(100),
-            overview TEXT,
-            idGenre char(1),
-            imgageMovie varchar(150),
-            releaseDate char(10),
+      onCreate: (db, version) async {
+        // Ejecutar las sentencias CREATE TABLE por separado
+        await db.execute('''
+        CREATE TABLE tblGenre(
+          idGenre char(1) primary key,
+          dscGenre varchar(50)
+        );
+      ''');
 
-            constraint fk_genre FOREIGN KEY (idGenre) REFERENCES tblGenre(idGenre)
-          );''';
-
-        db.execute(query);
+        await db.execute('''
+        CREATE TABLE tblMovies(
+          idMovie INTEGER PRIMARY KEY,
+          nameMovie VARCHAR(100),
+          overview TEXT,
+          idGenre char(1),
+          imgageMovie varchar(150),
+          releaseDate char(10),
+          constraint fk_genre FOREIGN KEY (idGenre) REFERENCES tblGenre(idGenre)
+        );
+      ''');
       },
     );
   }
@@ -59,12 +62,12 @@ class MoviesDatabase {
   Future<int> DELETE(String table, int idMovie) async {
     var con = await database;
     return await con
-        .delete(table, where: 'where idMovie = ?', whereArgs: [idMovie]);
+        .delete(table, where: 'idMovie = ?', whereArgs: [idMovie]);
   }
 
   Future<List<MoviesDAO>> SELECT() async {
     var con = await database;
-    var result = await con.query('tblMoviews');
+    var result = await con.query('tblMovies'); // Corregir el nombre de la tabla
     return result.map((movie) => MoviesDAO.fromMap(movie)).toList();
   }
 }

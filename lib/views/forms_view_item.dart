@@ -74,11 +74,11 @@ class _MyFormState extends State<MyForm> {
       ..nextFocus()
       ..unfocus();
 
-    final successSnackBar = SnackBar(
-      content: const Text('Submitted successfully! 🎉'),
+    final successSnackBar = const SnackBar(
+      content: Text('Submitted successfully! 🎉'),
     );
-    final failureSnackBar = SnackBar(
-      content: const Text('Something went wrong... 🚨'),
+    final failureSnackBar = const SnackBar(
+      content: Text('Something went wrong... 🚨'),
     );
 
     ScaffoldMessenger.of(context)
@@ -186,9 +186,9 @@ class _MyFormState extends State<MyForm> {
 enum EmailValidationError { invalid }
 
 class Email extends FormzInput<String, EmailValidationError> {
-  Email.pure([super.value = '']) : super.pure();
+  const Email.pure([super.value = '']) : super.pure();
 
-  Email.dirty([super.value = '']) : super.dirty();
+  const Email.dirty([super.value = '']) : super.dirty();
 
   static final _emailRegExp = RegExp(
     r'^[a-zA-Z\d.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z\d-]+(?:\.[a-zA-Z\d-]+)*$',

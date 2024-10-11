@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
       bottom: 170,
       child: Container(
         width: MediaQuery.of(context).size.width * .9,
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 10,
         ),
         decoration: BoxDecoration(
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
       bottom: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Color.fromARGB(255, 0, 178, 202),
+          backgroundColor: const Color.fromARGB(255, 0, 178, 202),
         ),
         onPressed: () {
           isLoading = true;
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromARGB(141, 0, 0, 0),
         ),
         child: Image.asset('assets/loading.gif'),
